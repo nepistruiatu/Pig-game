@@ -1,35 +1,24 @@
-/*
-GAME RULES:
-
-- The game has 2 players, playing in rounds
-- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
-- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
-- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
-
-*/
-
 var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
-        // 1. Random number
+        // 1. Generează un număr aleatoriu
         var dice = Math.floor(Math.random() * 6) + 1;
 
-        // 2. Display the result
+        // 2. Afişează rezultatele
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
 
-        // 3. Update the round score IF the rolled number was NOT a 1
+        // 3. Updatează scorul curent(rundei) dacă nu s-a dat 1
         if (dice !== 1) {
-            //Add score
+            // Adaugă scorul
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
-            //Next player
+            // Următorul
             nextPlayer();
         }
     }
@@ -39,13 +28,13 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
     if(gamePlaying) {
-        // Add CURRENT score to GLOBAL score
+        // Adaugă scorul curent la scorul global
         scores[activePlayer] += roundScore;
 
-        // Update the UI
+        // Updatează interfaţa
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-        // Check if player won the game
+        // Verifică dacă jucătorul a câştigat
         if (scores[activePlayer] >= 100) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
@@ -53,7 +42,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
         } else {
-            // Next player
+            // Următorul
             nextPlayer();
         }
     }
@@ -69,9 +58,6 @@ function nextPlayer() {
 
         document.querySelector('.player-0-panel').classList.toggle('active');
         document.querySelector('.player-1-panel').classList.toggle('active');
-
-        //document.querySelector('.player-0-panel').classList.remove('active');
-        //document.querySelector('.player-1-panel').classList.add('active');
 
         document.querySelector('.dice').style.display = 'none';
 };
@@ -99,7 +85,3 @@ function init() {
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
 }
-
-// document.querySelector('#current-' + activePlayer).textContent = dice;
-// document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
-// var x = document.querySelector('#score-0').textContent;
