@@ -29,7 +29,6 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     if(gamePlaying) {   // Verifică dacă jocul e activ
         // Adaugă scorul curent la scorul global
         scores[activePlayer] += roundScore;
-
         // Updatează scorul global pentru jucătorul activ
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
