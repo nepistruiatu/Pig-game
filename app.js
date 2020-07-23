@@ -1,5 +1,5 @@
-// scorul global, al rundei(curent), jucătorul activ şi starea jocului(resetat|activ sau încheiat=inactiv)
-var scores, roundScore, activePlayer, gamePlaying;
+// scorul total, curent, jucătorul activ, starea jocului(activ | încheiat), valoarea zarului anterior
+var scores, roundScore, activePlayer, gamePlaying, previousRoll;
 
 init(); // Reset
 
@@ -14,22 +14,28 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         diceDOM.style.display = 'block';        // Zarul devine vizibil
         diceDOM.src = 'dice-' + dice + '.png';  // Selectează poza care corespunde valorii zarului
 
-        // Updatează scorul rundei dacă nu s-a dat 1
-        if (dice !== 1) {
-            // Adaugă scorul curent la cel al rundei şi afişează-l pentru jucătorul activ
+        // Resetează scorul la 0 dacă pică 6 de 2 ori consecutiv şi încheie tura jucătorului
+        if(dice === 6 && previousRoll === 6) {
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            nextPlayer();
+        // Adaugă valoarea zarului la scorul curent al jucătorului şi afişează-l dacă nu s-a dat 1
+        } else if (dice !== 1) {
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        // Următorul (dacă s-a dat 1)
         } else {
-            nextPlayer();   // Următorul (dacă s-a dat 1)
+            nextPlayer();
         }
+        previousRoll = dice; // reţine valoarea zarului pentru tura următoare
     }    
 });
 // Dacă butonul Hold e apăsat atunci updatează scorul şi UI, verifică dacă a câştigat
 document.querySelector('.btn-hold').addEventListener('click', function() {
     if(gamePlaying) {   // Verifică dacă jocul e activ
-        // Adaugă scorul curent la scorul global
+        // Adaugă scorul curent la scorul total
         scores[activePlayer] += roundScore;
-        // Updatează scorul global pentru jucătorul activ
+        // Updatează scorul total pentru jucătorul activ
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
         // Verifică dacă jucătorul a câştigat, schimbă numele cu Winner şi dezactivează-l
@@ -67,7 +73,7 @@ function init() {
     gamePlaying = true; // Activează jocul
 
     document.querySelector('.dice').style.display = 'none';     // ascunde zarul
-    // Resetează scorurile (global + rundă)
+    // Resetează scorurile (total + curent)
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
