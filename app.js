@@ -5,6 +5,9 @@ init(); // Reset
 
 // Selectează butonul Roll şi rulează funcţia de fiecare dată când acesta e apăsat
 document.querySelector('.btn-roll').addEventListener('click', function() {
+    // Dezactivează input field-ul pentru modificări ulterioare când se dă prima oară cu zarul
+    document.querySelector('.set-score').disabled = true;
+
     if(gamePlaying) {   // Verifică dacă jocul este activ
         // Generează un număr aleatoriu între 1 şi 6
         var dice = Math.floor(Math.random() * 6) + 1;
@@ -38,8 +41,10 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         // Updatează scorul total pentru jucătorul activ
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
+        // Salvează valoarea din input field într-o variabilă
+        var setScore = document.querySelector('.set-score').value;
         // Verifică dacă jucătorul a câştigat, schimbă numele cu Winner şi dezactivează-l
-        if (scores[activePlayer] >= 100) {
+        if (scores[activePlayer] >= setScore) { // variabila determină scorul necesar victoriei
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none'; // Zarul devine invizibil
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -71,6 +76,8 @@ function init() {
     activePlayer = 0;   //Player 1(stânga) devine jucătorul activ 
     roundScore = 0;
     gamePlaying = true; // Activează jocul
+
+    document.querySelector('.set-score').disabled = false;      // activează câmpul scorului
 
     document.querySelector('.dice').style.display = 'none';     // ascunde zarul
     // Resetează scorurile (total + curent)
