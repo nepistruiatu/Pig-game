@@ -1,6 +1,7 @@
 /**********************************************
                 Setări globale
 **********************************************/
+
 /* Reset CSS */
 * {
     margin: 0;
@@ -28,6 +29,7 @@ body {
     background-color: #f7f7f7;
     box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
 }
+
 /* Panourile jucătorilor */
 .player-0-panel,
 .player-1-panel {
@@ -40,6 +42,7 @@ body {
 /**********************************************
                     Jucători
 **********************************************/
+
 /* Numele jucătorului (Player 1|2) */
 .player-name {
     font-size: 40px;
@@ -51,6 +54,7 @@ body {
     margin-bottom: 10px;
     position: relative;
 }
+
 /* Scorul global|total (al jucătorului) */
 .player-score {
     text-align: center;
@@ -59,6 +63,7 @@ body {
     color: #EB4D4D;
     margin-bottom: 130px;
 }
+
 /* Jucătorul activ - fundal şi nume */
 .active { background-color: #fff; }
 .active .player-name { font-weight: 300; }
@@ -72,6 +77,7 @@ body {
     top: -7px;
     right: 10px;    
 }
+
 /* Panoul cu scorul rundei|curent */
 .player-current-box {
     background-color: #EB4D4D;
@@ -81,6 +87,7 @@ body {
     padding: 12px;
     text-align: center;
 }
+
 /* Panoul cu scorul rundei - titlu */
 .player-current-label {
     text-transform: uppercase;
@@ -88,6 +95,7 @@ body {
     font-size: 12px;
     color: #222;
 }
+
 /* Panoul cu scorul rundei - punctaj */
 .player-current-score {
     font-size: 30px;
@@ -96,6 +104,7 @@ body {
 /**********************************************
                     Butoane
 **********************************************/
+
 /* Setări globale pentru butoane */
 button {
     position: absolute;
@@ -119,6 +128,7 @@ button:hover i { margin-right: 20px; }
 button:focus {
     outline: none;
 }
+
 /* Icon-urile din stânga butoanelor */
 i {
     color: #EB4D4D;
@@ -148,8 +158,8 @@ i {
 .set-score-desc {
     margin-bottom: 1%;
 }
-
 /* Câmpul Set Goal */
+
 .set-score {    
     font-size: 20px;
     font-weight: 100;
