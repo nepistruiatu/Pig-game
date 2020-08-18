@@ -135,6 +135,31 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
+/* Wrapper-ul pentru input şi descrierea lui */
+.wrapper-score {
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3%;
+}
+
+.set-score-desc {
+    margin-bottom: 1%;
+}
+
+/* Câmpul Set Goal */
+.set-score {    
+    font-size: 20px;
+    font-weight: 100;
+    text-align: center;
+    padding: 5px;
+    width: 18%;
+}
+
+input:focus { outline: none; }
+
 /* Zar */
 .dice {
     position: absolute;
