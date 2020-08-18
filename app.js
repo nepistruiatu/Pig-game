@@ -16,12 +16,6 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.getElementById('dice-1').src = 'dice-' + dice1 + '.png';  // Selectează poza care corespunde valorii zarului
         document.getElementById('dice-2').src = 'dice-' + dice2 + '.png';
 
-<<<<<<< Updated upstream
-        // Updatează scorul rundei dacă nu s-a dat 1
-        if (dice !== 1) {
-            // Adaugă scorul curent la cel al rundei şi afişează-l pentru jucătorul activ
-            roundScore += dice;
-=======
         // Resetează scorul total la 0 dacă ambele zaruri sunt 1 şi încheie tura jucătorului
         if(dice1 === 1 && dice2 === 1) {
             scores[activePlayer] = 0;
@@ -30,7 +24,6 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         // Adaugă valoarea zarurilor la scorul curent şi afişează-l dacă nu s-a dat nici un 1
         } else if (dice1 !== 1 && dice2 !== 1) {
             roundScore += dice1 + dice2;
->>>>>>> Stashed changes
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
             nextPlayer();   // Următorul (dacă s-a dat 1)
@@ -82,17 +75,12 @@ function init() {
     roundScore = 0;
     gamePlaying = true; // Activează jocul
 
-<<<<<<< Updated upstream
-    document.querySelector('.dice').style.display = 'none';     // ascunde zarul
-    // Resetează scorurile (global + rundă)
-=======
     document.querySelector('.set-score').disabled = false;      // activează câmpul scorului
 
     document.getElementById('dice-1').style.display = 'none';     // ascunde zarurile
     document.getElementById('dice-2').style.display = 'none';
 
     // Resetează scorurile (total + curent)
->>>>>>> Stashed changes
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
