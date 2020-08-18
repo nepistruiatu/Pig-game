@@ -36,8 +36,9 @@
             <div class='wrapper-score'>
                 <div class='set-score-desc'>Set goal</div>
                 <!--Câmpul în care se pot trece doar cifre fără copy&paste sau drag&drop-->
-                <input type='text' class='set-score' value='100' onPaste='return false'
-                onDrop='return false' onKeyPress='return event.charCode >= 48 && event.charCode <= 57'>
+                <input type='text' class='set-score' value='100' required maxlength='3'
+                onPaste='return false' onDrop='return false' onKeyPress='return event.charCode >= 48 && event.charCode <= 57'
+                title = 'Change the default winning score of 100 points by entering another value'>
             </div>
             
             <img src='dice-5.png' alt='Dice' class='dice'>
