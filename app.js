@@ -7,17 +7,30 @@ init(); // Reset
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {   // Verifică dacă jocul este activ
         // Generează un număr aleatoriu între 1 şi 6
-        var dice = Math.floor(Math.random() * 6) + 1;
+        var dice1 = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
 
         // Afişează rezultatele
-        var diceDOM = document.querySelector('.dice');
-        diceDOM.style.display = 'block';        // Zarul devine vizibil
-        diceDOM.src = 'dice-' + dice + '.png';  // Selectează poza care corespunde valorii zarului
+        document.getElementById('dice-1').style.display = 'block'; // Zarurile devin vizibile
+        document.getElementById('dice-2').style.display = 'block';        
+        document.getElementById('dice-1').src = 'dice-' + dice1 + '.png';  // Selectează poza care corespunde valorii zarului
+        document.getElementById('dice-2').src = 'dice-' + dice2 + '.png';
 
+<<<<<<< Updated upstream
         // Updatează scorul rundei dacă nu s-a dat 1
         if (dice !== 1) {
             // Adaugă scorul curent la cel al rundei şi afişează-l pentru jucătorul activ
             roundScore += dice;
+=======
+        // Resetează scorul total la 0 dacă ambele zaruri sunt 1 şi încheie tura jucătorului
+        if(dice1 === 1 && dice2 === 1) {
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            nextPlayer();
+        // Adaugă valoarea zarurilor la scorul curent şi afişează-l dacă nu s-a dat nici un 1
+        } else if (dice1 !== 1 && dice2 !== 1) {
+            roundScore += dice1 + dice2;
+>>>>>>> Stashed changes
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
             nextPlayer();   // Următorul (dacă s-a dat 1)
@@ -36,7 +49,8 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         // Verifică dacă jucătorul a câştigat, schimbă numele cu Winner şi dezactivează-l
         if (scores[activePlayer] >= 100) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-            document.querySelector('.dice').style.display = 'none'; // Zarul devine invizibil
+            document.getElementById('dice-1').style.display = 'none'; // Zarurile devin invizibile
+            document.getElementById('dice-2').style.display = 'none'; 
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;    // Dezactivează jocul
@@ -56,7 +70,8 @@ function nextPlayer() {
         document.querySelector('.player-0-panel').classList.toggle('active');
         document.querySelector('.player-1-panel').classList.toggle('active');
         // Ascunde zarul când începe o nouă rundă
-        document.querySelector('.dice').style.display = 'none';
+        document.getElementById('dice-1').style.display = 'none';
+        document.getElementById('dice-2').style.display = 'none';
 };
 // Resetează totul şi începe un nou joc când e apăsat New game
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -67,8 +82,17 @@ function init() {
     roundScore = 0;
     gamePlaying = true; // Activează jocul
 
+<<<<<<< Updated upstream
     document.querySelector('.dice').style.display = 'none';     // ascunde zarul
     // Resetează scorurile (global + rundă)
+=======
+    document.querySelector('.set-score').disabled = false;      // activează câmpul scorului
+
+    document.getElementById('dice-1').style.display = 'none';     // ascunde zarurile
+    document.getElementById('dice-2').style.display = 'none';
+
+    // Resetează scorurile (total + curent)
+>>>>>>> Stashed changes
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
